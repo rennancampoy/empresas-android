@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.empresas_android.data.Result
 import com.example.empresas_android.data.model.LoggedInUser
 
-class LoginRepository(val service: LoginService): ILoginRepository {
+class LoginRepository(private val service: ILoginService): ILoginRepository {
 
     override val user =  MutableLiveData<LoggedInUser?>()
 
@@ -16,7 +16,7 @@ class LoginRepository(val service: LoginService): ILoginRepository {
         service.logout()
     }
 
-    override fun login(username: String, password: String): Result<LoggedInUser> {
+    override suspend fun login(username: String, password: String): Result<LoggedInUser> {
         val result = service.login(username, password)
 
         if (result is Result.Success) {

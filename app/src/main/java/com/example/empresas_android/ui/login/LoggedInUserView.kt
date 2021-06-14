@@ -5,5 +5,4 @@ package com.example.empresas_android.ui.login
  */
 data class LoggedInUserView(
     val displayName: String
-    //... other data fields that may be accessible to the UI
 )

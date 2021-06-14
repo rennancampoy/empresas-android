@@ -1,35 +1,17 @@
 package com.example.empresas_android.data.login
 
 import com.example.empresas_android.data.Result
+import com.example.empresas_android.data.coroutines.withContextIO
 import com.example.empresas_android.data.model.LoggedInUser
-import java.io.IOException
-import java.util.*
 
-/**
- * Class that handles authentication w/ login credentials and retrieves user information.
- */
-class LoginService {
+class LoginService: ILoginService {
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser = LoggedInUser(
-                UUID.randomUUID().toString(),
-                "Jane Doe"
-            )
-            return Result.Success(fakeUser)
-        } catch (e: Throwable) {
-            return Result.Error(
-                IOException(
-                    "Error logging in",
-                    e
-                )
-            )
-        }
+    override suspend fun login(username: String, password: String) = withContextIO {
+        Result.Success(LoggedInUser("1", "Rennan"))
     }
 
-    fun logout() {
-        // TODO: revoke authentication
+    override fun logout() {
+        // rcampoy: we'll do nothing for now
     }
 }
 

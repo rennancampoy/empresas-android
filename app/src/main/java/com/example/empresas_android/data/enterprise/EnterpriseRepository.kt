@@ -1,11 +1,7 @@
 package com.example.empresas_android.data.enterprise
 
-class EnterpriseRepository: IEnterpriseRepository {
-    override fun getEnterprises(searchText: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class EnterpriseRepository(private val service: IEnterpriseService): IEnterpriseRepository {
+    override suspend fun getEnterprises(searchText: String?) = service.getEnterprises(searchText)
 
-    override fun getEnterpriseDetails(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override suspend fun getEnterpriseDetails(id: Int) = service.getEnterpriseDetails(id)
 }
