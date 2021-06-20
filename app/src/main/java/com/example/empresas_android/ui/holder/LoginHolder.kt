@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.*
-import com.example.empresas_android.ui.block.ILoadingBlock
+import com.example.empresas_android.ui.block.loading.ILoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
 import com.example.empresas_android.ui.viewmodel.login.ILoginViewModel
 

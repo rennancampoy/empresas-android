@@ -2,8 +2,8 @@ package com.example.empresas_android.ui.viewmodel.login
 
 import androidx.lifecycle.LiveData
 import com.example.empresas_android.data.coroutines.IBaseViewModel
-import com.example.empresas_android.ui.login.LoginFormState
-import com.example.empresas_android.ui.login.LoginResult
+import com.example.empresas_android.ui.utils.login.LoginFormState
+import com.example.empresas_android.ui.utils.login.LoginResult
 
 interface ILoginViewModel: IBaseViewModel {
     enum class Tag {

@@ -21,7 +21,6 @@ class EnterpriseViewModel(kodein: Kodein): BaseCoroutineViewModel(),
     override fun getEnterpriseDetail(id: Int) {
         launch {
             selectedEnterprise.value = enterpriseRepository.getEnterpriseDetails(1)
-            Log.d("ENTERPRISE", selectedEnterprise.value!!.name)
         }
     }
 

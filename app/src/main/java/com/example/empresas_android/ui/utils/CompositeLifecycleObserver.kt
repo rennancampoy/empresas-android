@@ -1,4 +1,4 @@
-package com.example.empresas_android.ui.util
+package com.example.empresas_android.ui.utils
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner

@@ -1,11 +1,12 @@
-package com.example.empresas_android.ui.block
+package com.example.empresas_android.ui.block.loading
 
 import android.content.Context
 import androidx.lifecycle.LifecycleObserver
-import com.example.empresas_android.ui.util.LoadingManager
+import com.example.empresas_android.ui.utils.LoadingManager
 
 class LoadingBlock(context: Context): ILoadingBlock, LifecycleObserver {
-    private val loadingManager = LoadingManager(context)
+    private val loadingManager =
+        LoadingManager(context)
 
     override fun setVisibility(visible: Boolean, message: String?) {
         if(visible) {

@@ -1,4 +1,4 @@
-package com.example.empresas_android.ui.block
+package com.example.empresas_android.ui.block.loading
 
 interface ILoadingBlock {
     fun show(message: String? = null)

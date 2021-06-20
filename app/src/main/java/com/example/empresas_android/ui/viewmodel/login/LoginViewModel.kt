@@ -7,9 +7,9 @@ import com.example.empresas_android.data.Result
 import com.example.empresas_android.R
 import com.example.empresas_android.data.coroutines.BaseCoroutineViewModel
 import com.example.empresas_android.data.login.ILoginRepository
-import com.example.empresas_android.ui.login.LoggedInUserView
-import com.example.empresas_android.ui.login.LoginFormState
-import com.example.empresas_android.ui.login.LoginResult
+import com.example.empresas_android.ui.utils.login.LoggedInUserView
+import com.example.empresas_android.ui.utils.login.LoginFormState
+import com.example.empresas_android.ui.utils.login.LoginResult
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.lazy
@@ -25,7 +25,6 @@ class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
     override fun login(username: String, password: String) {
         launchSafe(ILoginViewModel.Tag.LOGIN) {
             val result = loginRepository.login(username, password)
-
             if (result is Result.Success) {
                 loginResult.value =
                     LoginResult(
@@ -53,7 +52,9 @@ class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
                 )
         } else {
             loginFormState.value =
-                LoginFormState(isDataValid = true)
+                LoginFormState(
+                    isDataValid = true
+                )
         }
     }
 

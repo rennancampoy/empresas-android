@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.empresas_android.R
 import com.example.empresas_android.data.dependencyInjection.DataKodein
 import com.example.empresas_android.data.dependencyInjection.ViewModelFactory
-import com.example.empresas_android.ui.block.LoadingBlock
+import com.example.empresas_android.ui.block.loading.LoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
 import com.example.empresas_android.ui.holder.LoginHolder
 import com.example.empresas_android.ui.viewmodel.login.LoginViewModel

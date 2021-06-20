@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.empresas_android.R
-import com.example.empresas_android.ui.block.ViewBinder
+import com.example.empresas_android.ui.utils.ViewBinder
 
 class LoginViewBinder(rootView: ViewGroup): ViewBinder(rootView) {
     val usernameEditText: EditText = rootView.findViewById(R.id.username)

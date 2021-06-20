@@ -1,4 +1,4 @@
-package com.example.empresas_android.ui.util
+package com.example.empresas_android.ui.utils
 
 import android.app.AlertDialog
 import android.app.Dialog

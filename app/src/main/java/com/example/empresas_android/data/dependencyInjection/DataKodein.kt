@@ -1,5 +1,7 @@
 package com.example.empresas_android.data.dependencyInjection
 
+import com.example.empresas_android.data.api.IApiClient
+import com.example.empresas_android.data.api.RetrofitApiClient
 import com.example.empresas_android.data.enterprise.EnterpriseRepository
 import com.example.empresas_android.data.enterprise.EnterpriseService
 import com.example.empresas_android.data.enterprise.IEnterpriseRepository
@@ -22,9 +24,10 @@ object DataKodein {
 
         kodein = Kodein {
             bind<IEnterpriseRepository>() with singleton { EnterpriseRepository(instance()) }
+            bind<IEnterpriseService>() with singleton { EnterpriseService(instance()) }
             bind<ILoginRepository>() with singleton { LoginRepository(instance()) }
-            bind<IEnterpriseService>() with singleton { EnterpriseService() }
             bind<ILoginService>() with singleton { LoginService() }
+            bind<IApiClient>() with singleton { RetrofitApiClient() }
         }
 
         setup = true
