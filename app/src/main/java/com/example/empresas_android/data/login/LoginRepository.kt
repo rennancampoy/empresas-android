@@ -1,10 +1,14 @@
 package com.example.empresas_android.data.login
 
 import androidx.lifecycle.MutableLiveData
-import com.example.empresas_android.data.Result
+import com.example.empresas_android.data.dataPersistence.IPairDataPersistence
 import com.example.empresas_android.data.model.LoggedInUser
+import com.example.empresas_android.data.model.LoggedUser
 
-class LoginRepository(private val service: ILoginService): ILoginRepository {
+class LoginRepository(
+    private val service: ILoginService,
+    private val dataPersistence: IPairDataPersistence
+): ILoginRepository {
 
     override val user =  MutableLiveData<LoggedInUser?>()
 
@@ -16,17 +20,13 @@ class LoginRepository(private val service: ILoginService): ILoginRepository {
         service.logout()
     }
 
-    override suspend fun login(username: String, password: String): Result<LoggedInUser> {
-        val result = service.login(username, password)
+    override suspend fun login(username: String, password: String): LoggedUser {
+        val response = service.login(username, password)
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
+        dataPersistence.putString("access-token", response.headers().get("access-token")!!)
+        dataPersistence.putString("client", response.headers().get("client")!!)
+        dataPersistence.putString("uid", response.headers().get("uid")!!)
 
-        return result
-    }
-
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user.value = loggedInUser
+        return response.body()!!
     }
 }

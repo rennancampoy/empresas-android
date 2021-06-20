@@ -2,12 +2,10 @@ package com.example.empresas_android.ui.viewmodel.login
 
 import androidx.lifecycle.MutableLiveData
 import android.util.Patterns
-import com.example.empresas_android.data.Result
 
 import com.example.empresas_android.R
 import com.example.empresas_android.data.coroutines.BaseCoroutineViewModel
 import com.example.empresas_android.data.login.ILoginRepository
-import com.example.empresas_android.ui.utils.login.LoggedInUserView
 import com.example.empresas_android.ui.utils.login.LoginFormState
 import com.example.empresas_android.ui.utils.login.LoginResult
 import com.github.salomonbrys.kodein.Kodein
@@ -24,18 +22,7 @@ class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
 
     override fun login(username: String, password: String) {
         launchSafe(ILoginViewModel.Tag.LOGIN) {
-            val result = loginRepository.login(username, password)
-            if (result is Result.Success) {
-                loginResult.value =
-                    LoginResult(
-                        success = LoggedInUserView(
-                            displayName = result.data.displayName
-                        )
-                    )
-            } else {
-                loginResult.value =
-                    LoginResult(error = R.string.login_failed)
-            }
+            loginRepository.login(username, password)
         }
     }
 
