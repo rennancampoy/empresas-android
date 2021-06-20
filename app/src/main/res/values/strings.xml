@@ -11,6 +11,6 @@
     <string name="login_action_sign_in_short">Sign in</string>
     <string name="login_invalid_username">Not a valid username</string>
     <string name="login_invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">"Erro ao realizar Login. Por favor, cheque as credenciais."</string>
 
 </resources>

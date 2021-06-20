@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.empresas_android.R
 import com.example.empresas_android.data.dependencyInjection.DataKodein
 import com.example.empresas_android.data.dependencyInjection.ViewModelFactory
+import com.example.empresas_android.ui.block.error.SnackErrorBlock
 import com.example.empresas_android.ui.block.loading.LoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
 import com.example.empresas_android.ui.holder.LoginHolder
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        DataKodein.setup()
+        DataKodein.setup(applicationContext)
 
         initHolder()
     }
@@ -34,7 +35,8 @@ class LoginActivity : AppCompatActivity() {
                 ViewModelFactory
             ).get(LoginViewModel::class.java),
             LoginViewBinder(rootView),
-            LoadingBlock(this)
+            LoadingBlock(this),
+            SnackErrorBlock(rootView)
         )
         this.lifecycle.addObserver(holder)
     }

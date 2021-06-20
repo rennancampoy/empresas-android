@@ -5,19 +5,20 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.lifecycle.*
+import com.example.empresas_android.ui.block.error.IErrorBlock
 import com.example.empresas_android.ui.block.loading.ILoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
 import com.example.empresas_android.ui.viewmodel.login.ILoginViewModel
+import com.example.empresas_android.R
 
 class LoginHolder(
     private val activity: Activity,
     private val lifecycleOwner: LifecycleOwner,
     private val loginViewModel: ILoginViewModel,
     private val viewBinder: LoginViewBinder,
-    private val loadingBlock: ILoadingBlock
+    private val loadingBlock: ILoadingBlock,
+    private val errorBlock: IErrorBlock
 ): LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -27,7 +28,17 @@ class LoginHolder(
 
     private fun init() {
         with(viewBinder) {
-            with(loginViewModel){
+            with(loginViewModel) {
+                error.observe(lifecycleOwner, Observer {
+                    when (it.tag) {
+                        ILoginViewModel.Tag.LOGIN -> errorBlock.showError(R.string.login_failed)
+                    }
+                })
+
+                loading.observe(lifecycleOwner, Observer {
+                    loadingBlock.setVisibility(it.isLoading)
+                })
+
                 loginFormState.observe(lifecycleOwner, Observer {
                     val loginState = it ?: return@Observer
 
@@ -41,19 +52,9 @@ class LoginHolder(
                     }
                 })
 
-                loading.observe(lifecycleOwner, Observer {
-                    loadingBlock.setVisibility(it.isLoading)
-                })
-
-
                 loginResult.observe(lifecycleOwner, Observer {
-                    val loginResult = it ?: return@Observer
-
-                    if (loginResult.error != null) {
-                        showLoginFailed(loginResult.error)
-                    }
-                    if (loginResult.success != null) {
-                        //abrir lista de empresas
+                    if (it.success != null) {
+                        //TODO: abrir lista de empresas
                     }
                 })
 
@@ -89,10 +90,6 @@ class LoginHolder(
                 }
             }
         }
-    }
-
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(activity, errorString, Toast.LENGTH_SHORT).show()
     }
 }
 
