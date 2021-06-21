@@ -2,15 +2,15 @@ package com.example.empresas_android.ui.viewmodel.login
 
 import androidx.lifecycle.MutableLiveData
 import android.util.Patterns
+import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.instance
+import com.github.salomonbrys.kodein.lazy
 
 import com.example.empresas_android.R
 import com.example.empresas_android.data.coroutines.BaseCoroutineViewModel
 import com.example.empresas_android.data.login.ILoginRepository
 import com.example.empresas_android.ui.utils.login.LoginFormState
 import com.example.empresas_android.ui.utils.login.LoginResult
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.instance
-import com.github.salomonbrys.kodein.lazy
 
 class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
     ILoginViewModel {
@@ -32,11 +32,6 @@ class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
                 LoginFormState(
                     usernameError = R.string.login_invalid_username
                 )
-        } else if (!isPasswordValid(password)) {
-            loginFormState.value =
-                LoginFormState(
-                    passwordError = R.string.login_invalid_password
-                )
         } else {
             loginFormState.value =
                 LoginFormState(
@@ -51,9 +46,5 @@ class LoginViewModel(kodein: Kodein) : BaseCoroutineViewModel(),
         } else {
             username.isNotBlank()
         }
-    }
-
-    private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
     }
 }

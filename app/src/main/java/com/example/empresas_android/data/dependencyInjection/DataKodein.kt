@@ -27,7 +27,7 @@ object DataKodein {
 
         kodein = Kodein {
             bind<IEnterpriseRepository>() with singleton { EnterpriseRepository(instance()) }
-            bind<IEnterpriseService>() with singleton { EnterpriseService(instance()) }
+            bind<IEnterpriseService>() with singleton { EnterpriseService(instance(), instance()) }
             bind<ILoginRepository>() with singleton { LoginRepository(instance(), instance()) }
             bind<ILoginService>() with singleton { LoginService(instance()) }
             bind<IApiClient>() with singleton { RetrofitApiClient() }

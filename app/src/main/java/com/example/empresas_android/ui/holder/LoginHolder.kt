@@ -2,15 +2,20 @@ package com.example.empresas_android.ui.holder
 
 import android.app.Activity
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.*
+import com.example.empresas_android.R
 import com.example.empresas_android.ui.block.error.IErrorBlock
 import com.example.empresas_android.ui.block.loading.ILoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
+import com.example.empresas_android.ui.utils.DrawableClickListener
+import com.example.empresas_android.ui.utils.DrawableClickListener.DrawablePosition
 import com.example.empresas_android.ui.viewmodel.login.ILoginViewModel
-import com.example.empresas_android.R
+import kotlinx.android.synthetic.main.activity_login.view.*
+
 
 class LoginHolder(
     private val activity: Activity,
@@ -20,6 +25,7 @@ class LoginHolder(
     private val loadingBlock: ILoadingBlock,
     private val errorBlock: IErrorBlock
 ): LifecycleObserver {
+    private var isPasswordVisible = false
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -28,6 +34,23 @@ class LoginHolder(
 
     private fun init() {
         with(viewBinder) {
+            passwordEditText.setDrawableClickListener(object : DrawableClickListener {
+                override fun onClick(target: DrawablePosition?) {
+                    when (target) {
+                        DrawablePosition.RIGHT -> {
+                            isPasswordVisible = !isPasswordVisible
+
+                            passwordEditText.inputType = if(isPasswordVisible) {
+                                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                            } else
+                                (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                            passwordEditText.setSelection(passwordEditText.length())
+                        }
+                        else -> {}
+                    }
+                }
+            })
+
             with(loginViewModel) {
                 error.observe(lifecycleOwner, Observer {
                     when (it.tag) {

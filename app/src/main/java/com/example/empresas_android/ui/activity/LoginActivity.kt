@@ -11,7 +11,9 @@ import com.example.empresas_android.ui.block.error.SnackErrorBlock
 import com.example.empresas_android.ui.block.loading.LoadingBlock
 import com.example.empresas_android.ui.block.login.LoginViewBinder
 import com.example.empresas_android.ui.holder.LoginHolder
+import com.example.empresas_android.ui.utils.DrawableClickListener
 import com.example.empresas_android.ui.viewmodel.login.LoginViewModel
+import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,6 +29,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initHolder() {
         val rootView: ViewGroup = findViewById(android.R.id.content)
+        rootView.password.changeDrawableColor(
+            R.color.text_color,
+            DrawableClickListener.DrawablePosition.RIGHT
+        )
         val holder = LoginHolder(
             this,
             this,
@@ -41,5 +47,4 @@ class LoginActivity : AppCompatActivity() {
         this.lifecycle.addObserver(holder)
     }
 }
-
 

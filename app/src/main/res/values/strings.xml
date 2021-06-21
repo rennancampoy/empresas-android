@@ -5,12 +5,13 @@
     <string name="loading_wait">Aguarde...</string>
 
     //login
-    <string name="login_prompt_email">Email</string>
-    <string name="login_prompt_password">Password</string>
+    <string name="login_prompt_email">E-mail</string>
+    <string name="login_prompt_password">Senha</string>
     <string name="login_action_sign_in">Entrar</string>
     <string name="login_action_sign_in_short">Sign in</string>
-    <string name="login_invalid_username">Not a valid username</string>
-    <string name="login_invalid_password">Password must be >5 characters</string>
+    <string name="login_invalid_username">E-mail inválido</string>
     <string name="login_failed">"Erro ao realizar Login. Por favor, cheque as credenciais."</string>
+    <string name="login_welcome">Bem vindo ao empresas</string>
+    <string name="login_lorem">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</string>
 
 </resources>
